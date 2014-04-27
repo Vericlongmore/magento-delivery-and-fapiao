@@ -1,4 +1,4 @@
-magento mobile switch 
+magento mobile switch  magento WAP mall
 
 magento More dev
 
