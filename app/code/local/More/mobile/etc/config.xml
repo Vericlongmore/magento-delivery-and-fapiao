@@ -40,78 +40,78 @@
                     <use>core_setup</use>
                 </connection>
             </moremobile_setup>
-            <awmobile_write>
+            <moremobile_write>
                 <connection>
                     <use>core_write</use>
                 </connection>
-            </awmobile_write>
-            <awmobile_read>
+            </moremobile_write>
+            <moremobile_read>
                 <connection>
                     <use>core_read</use>
                 </connection>
-            </awmobile_read>
+            </moremobile_read>
         </resources>
     </global>
     <frontend>
         <layout>
             <updates>
                 <onsale>
-                    <file>aw_mobile.xml</file>
+                    <file>more_mobile.xml</file>
                 </onsale>
             </updates>
         </layout>
         <events>
             <controller_front_init_before>
                 <observers>
-                    <awmobile_frontend_init>
+                    <moremobile_frontend_init>
                         <type>singleton</type>
-                        <class>awmobile/observer</class>
+                        <class>moremobile/observer</class>
                         <method>beforeFrontendInit</method>
-                    </awmobile_frontend_init>
+                    </moremobile_frontend_init>
                 </observers>
             </controller_front_init_before>
             <controller_action_predispatch>
                 <observers>
-                    <awmobile_predispatch>
+                    <moremobile_predispatch>
                         <type>singleton</type>
-                        <class>awmobile/observer</class>
+                        <class>moremobile/observer</class>
                         <method>predispatch</method>
-                    </awmobile_predispatch>
+                    </moremobile_predispatch>
                 </observers>
             </controller_action_predispatch>
             <customer_logout>
                 <observers>
-                    <awmobile_customer_logout>
+                    <moremobile_customer_logout>
                         <type>singleton</type>
-                        <class>awmobile/observer</class>
+                        <class>moremobile/observer</class>
                         <method>customerLogout</method>
-                    </awmobile_customer_logout>
+                    </moremobile_customer_logout>
                 </observers>
             </customer_logout>
         </events>
         <routers>
-            <awmobile>
+            <moremobile>
                 <use>standard</use>
                 <args>
-                    <module>AW_Mobile</module>
-                    <frontName>awmobile</frontName>
+                    <module>more_Mobile</module>
+                    <frontName>moremobile</frontName>
                 </args>
-            </awmobile>
+            </moremobile>
         </routers>
         <layout>
             <updates>
-                <awmobile>
-                    <file>awmobile.xml</file>
-                </awmobile>
+                <moremobile>
+                    <file>moremobile.xml</file>
+                </moremobile>
             </updates>
         </layout>
         <translate>
             <modules>
-                <AW_Mobile>
+                <More_Mobile>
                     <files>
-                        <default>AW_Mobile.csv</default>
+                        <default>More_Mobile.csv</default>
                     </files>
-                </AW_Mobile>
+                </More_Mobile>
             </modules>
         </translate>
     </frontend>
@@ -127,9 +127,9 @@
                             <children>
                                 <config>
                                     <children>
-                                        <awmobile>
+                                        <moremobile>
                                             <title>aheadWorks - Mobile</title>
-                                        </awmobile>
+                                        </moremobile>
                                     </children>
                                 </config>
                             </children>
@@ -140,16 +140,16 @@
         </acl>
         <translate>
             <modules>
-                <AW_Mobile>
+                <More_Mobile>
                     <files>
-                        <default>AW_Mobile.csv</default>
+                        <default>More_Mobile.csv</default>
                     </files>
-                </AW_Mobile>
+                </More_Mobile>
             </modules>
         </translate>
     </adminhtml>
     <default>
-        <awmobile>
+        <moremobile>
             <design>
                 <icon>touch-icon.png</icon>
                 <fullscreen>0</fullscreen>
@@ -163,6 +163,6 @@
                 <always_switch_to_mobile_view>0</always_switch_to_mobile_view>
                 <mobile_redirect>0</mobile_redirect>
             </behaviour>
-        </awmobile>
+        </moremobile>
     </default>
 </config>
