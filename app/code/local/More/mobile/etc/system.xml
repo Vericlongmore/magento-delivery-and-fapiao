@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <moremobile translate="label" module="moremobile">
+            <label>Mobile</label>
+            <tab>moreall</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>130</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <settings translate="label">
+                    <label>Mobile Theme Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <scrolldisabled translate="label">
+                            <label>Disable automatic scroll to menu</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </scrolldisabled>
+                    </fields>
+                </settings>
+                <design translate="label">
+                    <label>Design</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>20</sort_order>
+                    <fields>
+                        <logo_src translate="label">
+                            <label>Catalog Logo Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">moremobile</upload_dir>
+                            <base_url type="media" scope_info="1">moremobile</base_url>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logo_src>
+                        <logo_alt translate="label">
+                            <label>Catalog Logo Alt</label>
+                            <frontend_type></frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logo_alt>
+                        <bootmarks_src translate="label">
+                            <label>Bookmarks Icon Source </label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">moremobile</upload_dir>
+                            <base_url type="media" scope_info="1">moremobile</base_url>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bootmarks_src>
+                        <custom_design>
+                            <label>Custom Design</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>moremobile/system_config_source_core_design</source_model>
+                            <comment>If not defined, default mobile design is used</comment>
+                        </custom_design>
+                        <footer_links_block translate="label">
+                            <label>Footer Links Block</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>moremobile/system_config_source_catalog_page</source_model>
+                            <comment>If not defined, default mobile links are used. Use automatically created 'Mobile Footer Links (Example)' static block as an example</comment>
+                        </footer_links_block>
+                        <copyright translate="label">
+                            <label>Footer Copyright</label>
+                            <frontend_type></frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </copyright>
+                    </fields>
+                </design>
+                <product_page translate="label">
+                    <label>Product Page</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>20</sort_order>
+                    <fields>
+                        <catalog_additional_data>
+                            <label>Display Additional Data</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </catalog_additional_data>
+                    </fields>
+                </product_page>
+                <behaviour translate="label">
+                <label>Behaviour</label>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <sort_order>30</sort_order>
+                <fields>
+                    <switcher>
+                        <label>Desktop/Mobile Switcher</label>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>10</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                    </switcher>
+                    <mobile_detect>
+                        <label>Mobile Detect</label>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                    </mobile_detect>
+                    <tablet_detect>
+                        <label>Tablet Detect</label>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>30</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <depends><mobile_detect>1</mobile_detect></depends>
+                    </tablet_detect>
+                    <mobile_cache>
+                        <label>iPhone Cache</label>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>35</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                    </mobile_cache>
+                    <mobile_comment>
+                        <label>Per-store configuration</label>
+                        <frontend_type>label</frontend_type>
+                        <sort_order>37</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>0</show_in_store>
+                        <comment>If you want to configure automatic switching to mobile view or redirect to mobile version for specific store please change current configuration scope</comment>
+                    </mobile_comment>
+                    <always_switch_to_mobile_view>
+                        <label>Always switch to mobile view</label>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>40</sort_order>
+                        <show_in_default>0</show_in_default>
+                        <show_in_website>0</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                    </always_switch_to_mobile_view>
+                    <mobile_redirect>
+                        <label>Enable redirect to store</label>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>45</sort_order>
+                        <show_in_default>0</show_in_default>
+                        <show_in_website>0</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <source_model>adminhtml/system_config_source_yesno</source_model>
+                        <comment>Not applicable with single store</comment>
+                    </mobile_redirect>
+                    <redirect_to>
+                        <label>Redirect to store</label>
+                        <frontend_type>select</frontend_type>
+                        <sort_order>50</sort_order>
+                        <show_in_default>0</show_in_default>
+                        <show_in_website>0</show_in_website>
+                        <show_in_store>1</show_in_store>
+                        <source_model>adminhtml/system_config_source_store</source_model>
+                        <depends><mobile_redirect>1</mobile_redirect></depends>
+                        <comment>To prevent incorrect behavior please do not set here current store view and don't set recursive redirects</comment>
+                    </redirect_to>
+                </fields>
+            </behaviour>
+            <ganalytics translate="label">
+                <label>Google Analytics</label>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+                <show_in_store>1</show_in_store>
+                <sort_order>40</sort_order>
+                <fields>
+                    <gacode translate="label">
+                        <label>Account Number</label>
+                        <frontend_type></frontend_type>
+                        <sort_order>20</sort_order>
+                        <show_in_default>1</show_in_default>
+                        <show_in_website>1</show_in_website>
+                        <show_in_store>1</show_in_store>
+                    </gacode>
+                </fields>
+            </ganalytics>
+            </groups>
+        </moremobile>
+    </sections>
+</config>
