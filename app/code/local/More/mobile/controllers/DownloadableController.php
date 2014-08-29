@@ -25,21 +25,18 @@
  */
 
 
-class More_Mobile_RedirectController extends Mage_Core_Controller_Front_Action
+class More_Mobile_DownloadableController extends Mage_Core_Controller_Front_Action
 {
-    
     protected function _addNotice($message)
     {
         Mage::getSingleton('core/session')->addNotice($message);
         return $this;
     }
-
-    public function customerAction()
+    
+    
+    public function nowayAction()
     {
-        $this->_addNotice(Mage::helper('Moremobile')->__('The opportunity of using this tab is not supported yet'));
-
-        $this->_redirect('customer/account');
+        $this->_addNotice(Mage::helper('downloadable')->__('The link is not available.'));
+        $this->_redirectReferer();
     }
-
-
 }
