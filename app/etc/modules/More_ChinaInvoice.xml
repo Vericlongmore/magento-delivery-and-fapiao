@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <More_ChinaInvoice>
+            <active>true</active>
+            <codePool>local</codePool>
+        </More_ChinaInvoice>
+    </modules>
+</config>

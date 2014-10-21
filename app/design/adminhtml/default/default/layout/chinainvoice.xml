@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_sales_order_view>
+            <reference name="sales_order_tabs">
+                <action method="addTab"><name>fapiao</name><block>chinainvoice/adminhtml_sales_order_view_tab_fapiao</block></action>
+            </reference>
+            <reference name="sales_order_tabs">
+                <action method="addTab"><name>deliverydate</name><block>chinainvoice/adminhtml_sales_order_view_tab_deliverydate</block></action>
+            </reference>
+    </adminhtml_sales_order_view>
+</layout>

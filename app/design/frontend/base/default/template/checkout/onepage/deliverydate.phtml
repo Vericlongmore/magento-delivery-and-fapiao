@@ -1,0 +1,236 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<style type="text/css">
+    .left{float: left;}
+    .right{float: right;}
+    #co-deliverydate-form .inputradio{padding-right: 30px}
+</style>
+<form id="co-deliverydate-form">
+    <div><div class="left">收货日期选择：</div>
+        <div class="left"><?php echo $this->__('workday');?>：</div>
+        <div class="left inputradio" ><input type="radio" name="delivery_time" value="<?php echo $this->__('workday');?>"></div>
+        <div class="left"><?php echo $this->__('weekday');?>：</div>
+        <div class="left inputradio"><input type="radio" name="delivery_time" value="<?php echo $this->__('weekday');?>"></div>
+        <div class="left"><?php echo $this->__('holiday');?>：</div>
+        <div class="left"><input type="radio" name="delivery_time" value="<?php echo $this->__('holiday');?>"></div>
+    </div>
+    <br/>
+    <div>
+        <label for="shipping_arrival_comments"><?php echo $this->__('delivery content');?>:</label><br>
+        <textarea cols="65" rows="8" name="delivery_content" id="delivery_content"></textarea>
+
+    </div>
+<div class="buttons-set" id="deliverydate-buttons-container">
+    <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+    <button type="button" title="<?php echo $this->__('Continue') ?>" class="button" onclick="deliverydate.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+        <span class="please-wait" id="deliverydate-please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+</div>
+
+<script type="text/javascript">
+    //<![CDATA[
+    var billEditTag = jQuery('#bill-edit').hide();
+    var billTextTag = jQuery('#bill-text');
+    var billFormTag = jQuery('#bill-form');
+    var billSwitch = jQuery ('#bill-switch');
+    var hasInvoice = jQuery('#need_invoice');
+
+    billSwitch.change(function () {
+        if (jQuery(this).attr('checked')) {
+
+            hasInvoice.val('1');
+            billFormTag.show();
+            billTextTag.empty();
+        } else {
+            hasInvoice.val('0');
+            billFormTag.hide();
+        }
+    }).trigger('change');
+
+    billEditTag.click(function () {
+        jQuery(this).hide();
+        billSwitch.attr('checked', 'checked').trigger('change');
+    });
+
+    billFormTag.find('input[name="bill_title"]').change(function () {
+        if (jQuery(this).val() == 'Personal') {
+            billFormTag.find('input[name="bill_company"]').parent().parent().hide();
+        } else {
+            billFormTag.find('input[name="bill_company"]').parent().parent().show();
+            jQuery('.bill-tax').hide();
+        }
+    });
+
+    billFormTag.find('input[name="bill_type"]').change(function () {
+        if (jQuery(this).val() == 'VAT Invoice') {
+            billFormTag.find('input[name="bill_title"][value="Personal"]').parent('label').hide();
+            billFormTag.find('input[name="bill_title"][value="Units"]').attr('checked', 'checked').trigger('change');
+            billFormTag.find('input[name="bill_content"][value!="Detail"]').parent('label').hide();
+            billFormTag.find('input[name="bill_content"][value="Detail"]').attr('checked', 'checked');
+            jQuery('.bill-tax').show();
+        } else {
+            billFormTag.find('input[name="bill_content"][value!="Detail"]').parent('label').show();
+            billFormTag.find('input[name="bill_title"][value="Personal"]').parent('label').show();
+            jQuery('.bill-tax').hide();
+        }
+    });
+
+
+    billFormTag.submit(function () {
+        $this = jQuery(this);
+        var flag = true;
+        $this.find('input:visible').each(function () {
+            var pompt = jQuery(this).parent().find('.error');
+            if (jQuery(this).val() == "") {
+                var html = '<span class="error">Required Fields"</span>';
+                if (pompt.length) {
+                    pompt.html(html);
+                } else {
+                    jQuery(this).parent().append(html);
+                }
+                flag = false;
+            } else {
+                pompt.empty();
+            }
+        });
+
+        if (flag) {
+            var params = [];
+            $this.find('input:visible').each(function () {
+                params.push(jQuery(this).serialize());
+            });
+            jQuery.post("<?php echo $this->getUrl('*/*/saveBill'); ?>", params.join('&'), function (data) {
+                if (data) {
+                    data = jQuery.parseJSON(data);
+                } else {
+                    data = {};
+                }
+                if (data.error) {
+                    if (data.error_messages) {
+                        alert(data.error_messages);
+                    }
+                    else if (data.message) {
+                        alert(data.message);
+                    }
+                    else {
+                        alert(data.error);
+                    }
+                } else {
+                    billFormTag.hide();
+                    billEditTag.show();
+
+                    var html = '';
+                    $this.find("ul li").each(function () {
+                        var label = jQuery(this).find('span[class="label"]').text();
+                        var text = jQuery(this).find("input:checked").parent('label').text();
+                        if (label && text) {
+                            html += '<dt>' + label + '</dt>';
+                            html += '<dd>' + text + '</dd>';
+                        }
+                    });
+                    billTextTag.html(html);
+                }
+            });
+        }
+        return false;
+    });
+
+
+    var Deliverydate = Class.create();
+    Deliverydate.prototype = {
+        initialize: function(form, saveUrl){
+            //alert(form);
+            this.form = form;
+            if ($(this.form)) {
+                $(this.form).observe('submit', function(event){this.save();Event.stop(event);}.bind(this));
+            }
+            this.saveUrl = saveUrl;
+
+            this.onSave = this.nextStep.bindAsEventListener(this);
+            this.onComplete = this.resetLoadWaiting.bindAsEventListener(this);
+            //alert( this.onComplete);
+        },
+
+        save: function(){
+            checkout.setLoadWaiting('deliverydate');
+            //if (checkout.loadWaiting!=false) return;
+
+            var validator = new Validation(this.form);
+            if (validator.validate()) {
+
+                checkout.setLoadWaiting('deliverydate');
+                var request = new Ajax.Request(
+                    this.saveUrl,
+                    {
+                        method: 'post',
+                        onComplete: this.onComplete,
+                        onSuccess: this.onSave,
+                        onFailure: checkout.ajaxFailure.bind(checkout),
+                        parameters: Form.serialize(this.form)
+                    }
+                );
+                console.log(request);
+            }
+        },
+
+        resetLoadWaiting: function(transport){
+            checkout.setLoadWaiting(false);
+        },
+
+        nextStep: function(transport){
+            if (transport && transport.responseText){
+                try{
+                    response = eval('(' + transport.responseText + ')');
+                }
+                catch (e) {
+                    response = {};
+                }
+            }
+
+            if (response.error){
+                if ((typeof response.message) == 'string') {
+                    alert(response.message);
+                } else {
+                    if (window.billingRegionUpdater) {
+                        billingRegionUpdater.update();
+                    }
+
+                    alert(response.message.join("\n"));
+                }
+
+                return false;
+            }
+
+            checkout.setStepResponse(response);
+        }
+    }
+
+    var deliverydate = new Deliverydate('co-deliverydate-form', '<?php echo $this->getUrl('checkout/onepage/saveDeliveryDate') ?>');
+
+    //]]>
+</script>
